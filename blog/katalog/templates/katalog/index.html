@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>banana</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'katalog/css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+         <h5>логотип</h5>
+        {% if user.is_authenticated %}
+        Welcome,{{request.user.first_name}}
+        {% endif %}
+        {% if user.is_authenticated %}
+        <a href="#">выйти</a>
+        {% else %}
+        <a href="#">войти</a>
+        {% endif %}
+    </header>
+    <main>
+        <a href="{% url 'demon' %}"> Перейти по ссылке</a>
+
+        <ul>
+            {% for item in list %}
+                <li>
+                    {{item.name}}
+                    {{item.price}} ₽/кг
+                    <button>Добавить</button>
+                </li>
+            {% endfor %}
+
+
+        </ul>
+        <ul>
+            {% for item in blog_list %}
+                <li>
+                    {{item.title}}
+                    {{item.description}}
+                    <img src="{{item.foto.url}}" alt="">
+                    {{item.foto.url}}
+                   <p>
+                       {{item.author.name}}
+                       {{item.author.surname}}
+
+                   </p>
+
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="job"></div>
+    </main>
+    <footer></footer>
+</body>
+</html>
